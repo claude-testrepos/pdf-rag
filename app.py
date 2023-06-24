@@ -21,7 +21,8 @@ with st.sidebar:
         st.success("Indexed!")
     model = st.selectbox("Model", ["gpt-3.5-turbo", "gpt-4"])
 
-if "chain" not in st.session_state:
+if "chain" not in st.session_state or st.session_state.get("model") != model:
+    st.session_state.model = model
     st.session_state.chain = build_chain(model=model)
     st.session_state.messages = []
 
