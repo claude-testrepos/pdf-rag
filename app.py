@@ -20,6 +20,8 @@ with st.sidebar:
         st.session_state.pop("chain", None)
         st.success("Indexed!")
     model = st.selectbox("Model", ["gpt-3.5-turbo", "gpt-4"])
+    if st.button("Clear chat"):
+        st.session_state.pop("chain", None)
 
 if "chain" not in st.session_state or st.session_state.get("model") != model:
     st.session_state.model = model
