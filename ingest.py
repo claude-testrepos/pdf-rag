@@ -2,9 +2,10 @@ import argparse
 from pathlib import Path
 
 from langchain.document_loaders import PyPDFLoader
-from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
+
+from embeddings import get_embeddings
 
 DB_DIR = "chroma_db"
 
@@ -17,7 +18,7 @@ def ingest(folder: Path):
     splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
     chunks = splitter.split_documents(docs)
     print(f"{len(docs)} pages -> {len(chunks)} chunks")
-    db = Chroma.from_documents(chunks, OpenAIEmbeddings(), persist_directory=DB_DIR)
+    db = Chroma.from_documents(chunks, get_embeddings(), persist_directory=DB_DIR)
     db.persist()
 
 
