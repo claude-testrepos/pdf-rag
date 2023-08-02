@@ -17,3 +17,8 @@ streamlit run app.py
 ## Free embeddings
 
 `EMBEDDINGS=local` uses all-MiniLM-L6-v2 locally. Delete `chroma_db/` and re-ingest after switching.
+
+## TODO
+
+- [ ] better error messages
+- [ ] clean up the code
